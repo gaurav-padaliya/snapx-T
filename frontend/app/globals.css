@@ -19,3 +19,24 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+
+.border-l {
+  border-left-width: 1px;
+}
+
+.border-b {
+  border-bottom-width: 1px;
+}
+
+.relative {
+  position: relative;
+}
+
+.ml-6 {
+  margin-left: 1.5rem; /* Adjust this value for spacing */
+}
+
+.top-3 {
+  top: 0.75rem; /* Adjust alignment of connectors */
+}
