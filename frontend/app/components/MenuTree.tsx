@@ -10,7 +10,7 @@ const MenuTree: React.FC<{
   setActiveNode: (node: any) => void;
 }> = ({ data, onSelect, activeNode, setActiveNode }) => {
   return (
-    <ul className="list-none m-10">
+    <ul className="list-none my-10">
       {data.map((node) => (
         <TreeNode
           key={node.id}

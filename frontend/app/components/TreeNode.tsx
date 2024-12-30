@@ -64,7 +64,7 @@ const TreeNode: React.FC<{
       </div>
       {/* Child Nodes */}
       {isExpanded && node.children && (
-        <ul className="ml-2 border-l border-gray-300 ">
+        <ul className="ml-2 border-l border-gray-300">
           {node.children.map((child: any) => (
             <TreeNode
               key={child.id}
