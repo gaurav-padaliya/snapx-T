@@ -11,7 +11,7 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
-        primary: "#00FF85", // For active green menu item
+        primary: "#9ff443", // For active green menu item
         sidebarBg: "#0B1220", // Sidebar background color
       },
       spacing: {

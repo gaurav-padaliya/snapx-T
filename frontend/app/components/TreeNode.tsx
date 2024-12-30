@@ -1,29 +1,41 @@
 "use client";
 
 import React, { useState } from "react";
-import { FaPlus } from "react-icons/fa";
 import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io";
+import { FaPlus } from "react-icons/fa";
 
 const TreeNode: React.FC<{
   node: any;
   onSelect: (node: any) => void;
   depth: number;
-}> = ({ node, onSelect, depth }) => {
+  activeNode: any;
+  setActiveNode: (node: any) => void;
+}> = ({ node, onSelect, depth, activeNode, setActiveNode }) => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <li
-      className="relative ml-6"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      {/* Connector Lines */}
-      {/* <div className="absolute -left-6 top-3 h-full border-l border-gray-300"></div> */}
-      <div className="absolute -left-6 top-3 w-6 border-b border-gray-300"></div>
+    <li className="relative ml-6">
+      {/* Vertical and Horizontal Lines */}
+      {/* <div
+        className={`absolute -left-6 top-3 h-full ${
+          depth > 1 ? "border-l border-gray-300" : ""
+        }`}
+      ></div> */}
+      <div
+        className={`absolute -left-6 top-3 w-6 border-b border-gray-300`}
+        style={{ height: depth === 1 ? "50%" : "" }}
+      ></div>
 
       {/* Node Header */}
-      <div className="flex items-center space-x-2">
+      <div
+        className={`flex items-center space-x-2 ${
+          activeNode?.id === node.id ? "bg-gray-100 rounded-md px-2" : ""
+        }`}
+        onClick={() => {
+          onSelect(node);
+          setActiveNode(node);
+        }}
+      >
         {node.children ? (
           isExpanded ? (
             <IoIosArrowDown
@@ -39,18 +51,15 @@ const TreeNode: React.FC<{
         ) : (
           <span className="w-4"></span>
         )}
+        <span className="text-sm">{node.name}</span>
 
-        <span className="text-sm cursor-pointer" onClick={() => onSelect(node)}>
-          {node.name}
-        </span>
-
-        {/* Plus Icon */}
-        {isHovered && (
+        {/* Plus Icon for Active Node */}
+        {activeNode?.id === node.id && (
           <button
             className="text-blue-500 hover:text-blue-600"
             onClick={(e) => {
-              e.stopPropagation(); // Prevent arrow click
-              console.log(`Add child to ${node.name}`);
+              e.stopPropagation(); // Prevent arrow toggle
+              console.log(`Adding child to: ${node.name}`);
             }}
           >
             <FaPlus />
@@ -58,7 +67,7 @@ const TreeNode: React.FC<{
         )}
       </div>
 
-      {/* Children */}
+      {/* Child Nodes */}
       {isExpanded && node.children && (
         <ul className="ml-6 border-l border-gray-300">
           {node.children.map((child: any) => (
@@ -67,6 +76,8 @@ const TreeNode: React.FC<{
               node={child}
               onSelect={onSelect}
               depth={depth + 1}
+              activeNode={activeNode}
+              setActiveNode={setActiveNode}
             />
           ))}
         </ul>

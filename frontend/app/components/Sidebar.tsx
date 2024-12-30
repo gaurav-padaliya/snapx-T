@@ -81,7 +81,7 @@ const Sidebar: React.FC = () => {
                   <BsGrid3X3GapFill className="mr-3 text-gray-400 text-lg" />
                   <span className="text-base">Properties</span>
                 </li>
-                <li className="flex items-center px-4 py-2 text-sm hover:bg-gray-800 rounded-md bg-[#00FF85] text-gray-900 font-bold">
+                <li className="flex items-center px-4 py-2 text-sm hover:bg-gray-800 rounded-md bg-[#9ff443] text-gray-900 font-bold">
                   <BsGrid3X3GapFill className="mr-3 text-lg" />
                   <span className="text-base">Menus</span>
                 </li>
