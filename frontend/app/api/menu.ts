@@ -1,13 +1,16 @@
 import axios from "axios";
 
-const API_BASE = "/api";
+const API_BASE = "http://localhost:5000";
 
 export const fetchMenus = async () => {
   const response = await axios.get(`${API_BASE}/menus`);
   return response.data;
 };
 
-export const addMenuItem = async (menuId: string, newItem: { name: string; price: number; }) => {
+export const addMenuItem = async (
+  menuId: string,
+  newItem: { name: string; price: number }
+) => {
   const response = await axios.post(
     `${API_BASE}/menus/${menuId}/add-item`,
     newItem
