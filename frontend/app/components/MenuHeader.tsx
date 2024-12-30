@@ -3,6 +3,7 @@
 import React from "react";
 import { FaFolder } from "react-icons/fa";
 import { useTreeContext } from "../context/TreeContext";
+import { BsGrid3X3GapFill } from "react-icons/bs";
 
 const MenuHeader: React.FC = () => {
   const { dispatch } = useTreeContext();
@@ -16,7 +17,13 @@ const MenuHeader: React.FC = () => {
       </div>
 
       {/* Title */}
-      <h1 className="text-2xl font-bold">Menus</h1>
+      {/* i need icon  */}
+      <div className="text-2xl font-bold flex flex-row items-center">
+        <span className="flex items-center justify-center w-10 h-10 bg-blue-700 rounded-full text-white">
+          <BsGrid3X3GapFill className="mr-3 text-lg m-auto" />
+        </span>
+        <span className="ml-4">Menus</span>
+      </div>
 
       {/* Dropdown and Buttons */}
       <div className="flex flex-col">
