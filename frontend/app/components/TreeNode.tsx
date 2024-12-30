@@ -1,17 +1,24 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io";
 import { FaPlus } from "react-icons/fa";
+import { useTreeContext } from "../context/TreeContext";
 
 const TreeNode: React.FC<{
   node: any;
-  onSelect: (node: any) => void;
   depth: number;
+  onSelect: (node: any) => void;
   activeNode: any;
   setActiveNode: (node: any) => void;
-}> = ({ node, onSelect, depth, activeNode, setActiveNode }) => {
+}> = ({ node, depth, onSelect, activeNode, setActiveNode }) => {
+  const { state } = useTreeContext();
   const [isExpanded, setIsExpanded] = useState(false);
+
+  // Listen to global expand/collapse state
+  useEffect(() => {
+    setIsExpanded(state.isExpanded);
+  }, [state.isExpanded]);
 
   return (
     <li className="relative ml-6">

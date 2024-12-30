@@ -2,8 +2,11 @@
 
 import React from "react";
 import { FaFolder } from "react-icons/fa";
+import { useTreeContext } from "../context/TreeContext";
 
 const MenuHeader: React.FC = () => {
+  const { dispatch } = useTreeContext();
+
   return (
     <div className="flex flex-col space-y-6 border-b border-gray-200 pb-6 ml-6">
       {/* Breadcrumbs */}
@@ -27,14 +30,20 @@ const MenuHeader: React.FC = () => {
         </div>
 
         {/* Expand All and Collapse All Buttons */}
-      </div>
-      <div className="flex space-x-4">
-        <button className="bg-black text-white px-4 py-2 rounded-md hover:bg-gray-800">
-          Expand All
-        </button>
-        <button className="bg-white border border-gray-300 text-black px-4 py-2 rounded-md hover:bg-gray-200">
-          Collapse All
-        </button>
+        <div className="flex space-x-4 mt-4">
+          <button
+            className="bg-black text-white px-4 py-2 rounded-md hover:bg-gray-800"
+            onClick={() => dispatch({ type: "TOGGLE_ALL", payload: true })}
+          >
+            Expand All
+          </button>
+          <button
+            className="bg-white border border-gray-300 text-black px-4 py-2 rounded-md hover:bg-gray-200"
+            onClick={() => dispatch({ type: "TOGGLE_ALL", payload: false })}
+          >
+            Collapse All
+          </button>
+        </div>
       </div>
     </div>
   );
