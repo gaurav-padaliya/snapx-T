@@ -16,11 +16,6 @@ const TreeNode: React.FC<{
   return (
     <li className="relative ml-6">
       {/* Vertical and Horizontal Lines */}
-      {/* <div
-        className={`absolute -left-6 top-3 h-full ${
-          depth > 1 ? "border-l border-gray-300" : ""
-        }`}
-      ></div> */}
       <div
         className={`absolute -left-6 top-3 w-6 border-b border-gray-300`}
         style={{ height: depth === 1 ? "50%" : "" }}
@@ -29,7 +24,7 @@ const TreeNode: React.FC<{
       {/* Node Header */}
       <div
         className={`flex items-center space-x-2 ${
-          activeNode?.id === node.id ? "bg-gray-100 rounded-md px-2" : ""
+          activeNode?.id === node.id ? "rounded-md pb-4" : "pb-4"
         }`}
         onClick={() => {
           onSelect(node);
@@ -69,7 +64,7 @@ const TreeNode: React.FC<{
 
       {/* Child Nodes */}
       {isExpanded && node.children && (
-        <ul className="ml-6 border-l border-gray-300">
+        <ul className="ml-2 border-l border-gray-300 ">
           {node.children.map((child: any) => (
             <TreeNode
               key={child.id}
