@@ -16,11 +16,12 @@ const TreeNode: React.FC<{
   return (
     <li className="relative ml-6">
       {/* Vertical and Horizontal Lines */}
-      <div
-        className={`absolute -left-6 top-3 w-6 border-b border-gray-300`}
-        style={{ height: depth === 1 ? "50%" : "" }}
-      ></div>
-
+      {depth !== 1 && (
+        <div
+          className={`absolute -left-6 top-3 w-6 border-b border-gray-300`}
+          style={{ height: depth === 1 ? "50%" : "" }}
+        ></div>
+      )}
       {/* Node Header */}
       <div
         className={`flex items-center space-x-2 ${
@@ -61,7 +62,6 @@ const TreeNode: React.FC<{
           </button>
         )}
       </div>
-
       {/* Child Nodes */}
       {isExpanded && node.children && (
         <ul className="ml-2 border-l border-gray-300 ">

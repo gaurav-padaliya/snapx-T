@@ -4,6 +4,7 @@ import Sidebar from "./components/Sidebar";
 import MenuTree from "./components/MenuTree";
 import MenuForm from "./components/MenuForm";
 import { menuData } from "./components/menuData";
+import MenuHeader from "./components/MenuHeader";
 
 const Page: React.FC = () => {
   const [activeNode, setActiveNode] = useState<any>(null);
@@ -12,8 +13,10 @@ const Page: React.FC = () => {
       {/* Sidebar */}
       <Sidebar />
 
-      {/* <div className="flex space-x-8 p-6"> */}
-      <div className="w-2/3">
+      {/* Main Content */}
+
+      <div className="w-2/3 m-8">
+        <MenuHeader />
         <MenuTree
           data={menuData}
           onSelect={setActiveNode}
