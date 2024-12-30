@@ -11,6 +11,12 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        primary: "#00FF85", // For active green menu item
+        sidebarBg: "#0B1220", // Sidebar background color
+      },
+      spacing: {
+        18: "4.5rem", // Custom padding/margin for better spacing
+        72: "18rem", // Sidebar expanded width
       },
     },
   },
