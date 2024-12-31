@@ -21,7 +21,7 @@ const Sidebar: React.FC = () => {
       } bg-[#0B1220] text-white h-screen flex flex-col transition-all duration-300`}
     >
       {/* Sidebar Header */}
-      <div className="flex items-center justify-between px-6 py-6 border-b border-gray-700">
+      <div className="flex items-center justify-between px-6 pl-8 py-6 border-b border-gray-700">
         <h1
           className={`text-2xl font-extrabold tracking-wide ${
             !isExpanded && "hidden"

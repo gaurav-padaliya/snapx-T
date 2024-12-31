@@ -14,19 +14,31 @@ const Page: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
+  const loadMenus = async () => {
+    try {
+      const data = await fetchMenus();
+      setMenuData(data);
+    } catch (err: any) {
+      setError(err.message || "Failed to fetch menus");
+    } finally {
+      setLoading(false);
+    }
+  };
   useEffect(() => {
-    const loadMenus = async () => {
-      try {
-        const data = await fetchMenus();
-        setMenuData(data);
-      } catch (err: any) {
-        setError(err.message || "Failed to fetch menus");
-      } finally {
-        setLoading(false);
-      }
-    };
     loadMenus();
   }, []);
+
+  const handleChildAdded = (newChild: any) => {
+    const addChildToTree = (nodes: any[]): any[] =>
+      nodes.map((node: any) =>
+        node.id === newChild.parentId
+          ? { ...node, children: [...(node.children || []), newChild] }
+          : { ...node, children: addChildToTree(node.children || []) }
+      );
+    console.log("newChild", newChild);
+
+    setMenuData((prevData) => addChildToTree(prevData));
+  };
 
   return (
     <TreeProvider>
@@ -56,7 +68,10 @@ const Page: React.FC = () => {
               {/* Right: Form */}
               <div className="w-1/2">
                 {activeNode ? (
-                  <MenuForm activeNode={activeNode} />
+                  <MenuForm
+                    activeNode={activeNode}
+                    onChildAdded={handleChildAdded}
+                  />
                 ) : (
                   <div className="text-gray-500">
                     Select a node to view details

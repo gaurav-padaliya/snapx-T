@@ -59,7 +59,7 @@ const TreeNode: React.FC<{
         {/* Plus Icon for Active Node */}
         {activeNode?.id === node.id && (
           <button
-            className="text-blue-500 hover:text-blue-600"
+            className="text-white bg-blue-700 rounded-3xl p-1"
             onClick={(e) => {
               e.stopPropagation(); // Prevent arrow toggle
               console.log(`Adding child to: ${node.name}`);

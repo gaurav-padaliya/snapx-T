@@ -30,7 +30,7 @@ const MenuHeader: React.FC = () => {
         {/* Dropdown */}
         <div className="text-sm text-gray-500">Menu</div>
         <div className="relative w-48">
-          <select className="border rounded-md px-4 py-2 text-sm focus:outline-none bg-gray-50">
+          <select className="border rounded-md pr-20 px-4 py-4 text-sm focus:outline-none bg-gray-50">
             <option value="system-management">system management</option>
             {/* <option value="menu-management">menu management</option> */}
           </select>
@@ -46,7 +46,7 @@ const MenuHeader: React.FC = () => {
           </button>
           <button
             className="bg-white border border-gray-300 text-xs text-black px-4 py-2 rounded-3xl hover:bg-gray-200"
-            onClick={() => dispatch({ type: "TOGGLE_ALL", payload: false })}
+            onClick={() => dispatch({ type: "TOGGLE_NONE", payload: false })}
           >
             Collapse All
           </button>
