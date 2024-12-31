@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import menuReducer from './features/menuSlice';
+import menuReducer from './store/menuSlice';
 
 export const store = configureStore({
   reducer: {
