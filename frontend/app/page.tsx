@@ -57,7 +57,7 @@ const Page: React.FC = () => {
           <div className="m-8">
             {/* Hamburger Icon */}
             {!isMobileOpen && (
-              <div className="z-50 flex h-12 pl-6 ">
+              <div className="z-50 flex h-12 pl-6 lg:hidden">
                 <button
                   onClick={() => setIsMobileOpen(true)}
                   className="top-0 left-4 text-xl text-gray z-50 lg:hidden"
