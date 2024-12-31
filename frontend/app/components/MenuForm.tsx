@@ -4,41 +4,54 @@ const MenuForm: React.FC<{ activeNode: any }> = ({ activeNode }) => {
   const [name, setName] = useState("");
 
   return (
-    <div className="p-6 border rounded-md bg-gray-50">
-      <div className="mb-4">
-        <label className="block text-sm font-medium text-gray-700">
+    <div className="p-6 rounded-xl bg-white">
+      <div className="mb-6">
+        <label className="block text-sm font-semibold text-gray-600 mb-2">
           Menu ID
         </label>
         <input
           type="text"
-          className="mt-1 block w-full border-gray-300 rounded-md shadow-sm"
+          className="w-full px-4 py-2 text-sm bg-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           value={activeNode?.id || ""}
           disabled
         />
       </div>
-      <div className="mb-4">
-        <label className="block text-sm font-medium text-gray-700">
+      <div className="mb-6">
+        <label className="block text-sm font-semibold text-gray-600 mb-2">
+          Depth
+        </label>
+        <input
+          type="text"
+          className="w-full px-4 py-2 text-sm bg-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          value={activeNode?.depth || ""}
+          disabled
+        />
+      </div>
+      <div className="mb-6">
+        <label className="block text-sm font-semibold text-gray-600 mb-2">
           Parent Data
         </label>
         <input
           type="text"
-          className="mt-1 block w-full border-gray-300 rounded-md shadow-sm"
+          className="w-full px-4 py-2 text-sm bg-gray-100 rounded-lg  focus:outline-none focus:ring-2 focus:ring-blue-500"
           value={activeNode?.name || ""}
           disabled
         />
       </div>
-      <div className="mb-4">
-        <label className="block text-sm font-medium text-gray-700">Name</label>
+      <div className="mb-6">
+        <label className="block text-sm font-semibold text-gray-600 mb-2">
+          Name
+        </label>
         <input
           type="text"
-          className="mt-1 block w-full border-gray-300 rounded-md shadow-sm"
+          className="w-full px-4 py-2 text-sm bg-white rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
           placeholder="Enter child name"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
       </div>
       <button
-        className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
+        className="w-full py-3 bg-blue-600 text-white text-sm font-semibold rounded-3xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
         onClick={() => console.log(`Add child ${name} to ${activeNode?.name}`)}
       >
         Save
