@@ -56,14 +56,16 @@ const Page: React.FC = () => {
         <div className="flex-1 flex flex-col overflow-y-auto">
           <div className="m-8">
             {/* Hamburger Icon */}
-            <div className="z-50 flex h-12 pl-6 ">
-              <button
-                onClick={() => setIsMobileOpen(true)}
-                className="top-0 left-4 text-xl text-gray z-50 lg:hidden"
-              >
-                {!isMobileOpen && <FiMenu />}
-              </button>
-            </div>
+            {!isMobileOpen && (
+              <div className="z-50 flex h-12 pl-6 ">
+                <button
+                  onClick={() => setIsMobileOpen(true)}
+                  className="top-0 left-4 text-xl text-gray z-50 lg:hidden"
+                >
+                  {<FiMenu />}
+                </button>
+              </div>
+            )}
             <MenuHeader />
             <div className="flex flex-col md:flex-row md:space-x-8 mt-8">
               {/* Left: MenuTree */}

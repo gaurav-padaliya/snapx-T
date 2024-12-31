@@ -38,7 +38,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isMobileOpen, setIsMobileOpen }) => {
           </button>
           {/* Laptop Menu Icon */}
           <button
-            onClick={() => setIsMobileOpen(!isMobileOpen)}
+            // onClick={() => setIsMobileOpen(!isMobileOpen)}
             className="text-white text-2xl focus:outline-none hidden lg:block"
           >
             <FiMenu />
