@@ -1,7 +1,11 @@
 // api/menu.ts
 import axios from "axios";
 
-const API_BASE = "http://localhost:5002"; // Replace with your backend base URL
+const API_BASE =
+  process.env.NODE_ENV === "production"
+    ? "https://testemonial-b.vetvibehealthcare.live"
+    : "http://localhost:5002";
+console.log("API_BASE", API_BASE);
 
 // Fetch all menus
 export const fetchMenus = async () => {
