@@ -24,9 +24,6 @@ const Page: React.FC = () => {
       setLoading(false);
     }
   };
-  useEffect(() => {
-    loadMenus();
-  }, []);
 
   const handleChildAdded = (newChild: any) => {
     const addChildToTree = (nodes: any[]): any[] =>
@@ -35,10 +32,13 @@ const Page: React.FC = () => {
           ? { ...node, children: [...(node.children || []), newChild] }
           : { ...node, children: addChildToTree(node.children || []) }
       );
-    console.log("newChild", newChild);
 
     setMenuData((prevData) => addChildToTree(prevData));
   };
+
+  useEffect(() => {
+    loadMenus();
+  }, []);
 
   return (
     <TreeProvider>
@@ -50,8 +50,9 @@ const Page: React.FC = () => {
         <div className="flex-1 flex flex-col overflow-y-auto">
           <div className="m-8">
             <MenuHeader />
-            <div className="flex space-x-8 mt-8">
-              <div className="w-1/2">
+            <div className="flex flex-col md:flex-row md:space-x-8 mt-8">
+              {/* Left: MenuTree */}
+              <div className="w-full md:w-1/2">
                 {loading ? (
                   <div>Loading menus...</div>
                 ) : error ? (
@@ -66,16 +67,14 @@ const Page: React.FC = () => {
                 )}
               </div>
               {/* Right: Form */}
-              <div className="w-1/2">
+              <div className="w-full md:w-1/2 mt-8 md:mt-0">
                 {activeNode ? (
                   <MenuForm
                     activeNode={activeNode}
                     onChildAdded={handleChildAdded}
                   />
                 ) : (
-                  <div className="text-gray-500">
-                    Select a node to view details
-                  </div>
+                  <div className="text-gray-500 text-center"></div>
                 )}
               </div>
             </div>

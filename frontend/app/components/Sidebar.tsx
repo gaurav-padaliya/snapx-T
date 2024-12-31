@@ -18,7 +18,7 @@ const Sidebar: React.FC = () => {
     <div
       className={`${
         isExpanded ? "w-72" : "w-20"
-      } bg-[#0B1220] text-white h-screen flex flex-col transition-all duration-300`}
+      } bg-[#0B1220] text-white h-screen flex flex-col transition-all duration-300 relative`}
     >
       {/* Sidebar Header */}
       <div className="flex items-center justify-between px-6 pl-8 py-6 border-b border-gray-700">
@@ -41,7 +41,7 @@ const Sidebar: React.FC = () => {
       <nav className="flex-1 px-4 pt-6">
         <ul className="space-y-4">
           {/* Systems Section */}
-          <li>
+          <li className="relative group">
             <div
               className="flex items-center justify-between cursor-pointer px-6 py-3 hover:bg-gray-800 rounded-md"
               onClick={() => toggleSection("systems")}
@@ -66,6 +66,12 @@ const Sidebar: React.FC = () => {
                 </span>
               )}
             </div>
+            {/* Tooltip */}
+            {!isExpanded && (
+              <div className="absolute left-full top-0 ml-2 bg-gray-700 text-white text-sm rounded-md shadow-lg p-2 hidden group-hover:block">
+                Systems
+              </div>
+            )}
             {/* Submenu */}
             {activeSection === "systems" && (
               <ul
@@ -94,7 +100,7 @@ const Sidebar: React.FC = () => {
           </li>
 
           {/* Users & Groups Section */}
-          <li>
+          <li className="relative group">
             <div
               className="flex items-center justify-between cursor-pointer px-6 py-3 hover:bg-gray-800 rounded-md"
               onClick={() => toggleSection("usersGroups")}
@@ -119,6 +125,12 @@ const Sidebar: React.FC = () => {
                 </span>
               )}
             </div>
+            {/* Tooltip */}
+            {!isExpanded && (
+              <div className="absolute left-full top-0 ml-2 bg-gray-700 text-white text-sm rounded-md shadow-lg p-2 hidden group-hover:block">
+                Users & Groups
+              </div>
+            )}
             {/* Submenu */}
             {activeSection === "usersGroups" && (
               <ul
