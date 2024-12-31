@@ -7,9 +7,12 @@ import MenuForm from "./components/MenuForm";
 import MenuHeader from "./components/MenuHeader";
 import { fetchMenus } from "./api/menu";
 import { TreeProvider } from "./context/TreeContext";
+import { FiMenu } from "react-icons/fi";
 
 const Page: React.FC = () => {
   const [activeNode, setActiveNode] = useState<any>(null);
+
+  const [isMobileOpen, setIsMobileOpen] = useState<boolean>(false);
   const [menuData, setMenuData] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -44,11 +47,23 @@ const Page: React.FC = () => {
     <TreeProvider>
       <div className="flex h-screen">
         {/* Sidebar */}
-        <Sidebar />
+        <Sidebar
+          isMobileOpen={isMobileOpen}
+          setIsMobileOpen={setIsMobileOpen}
+        />
 
         {/* Main Content */}
         <div className="flex-1 flex flex-col overflow-y-auto">
           <div className="m-8">
+            {/* Hamburger Icon */}
+            <div className="z-50 flex h-12 pl-6 ">
+              <button
+                onClick={() => setIsMobileOpen(true)}
+                className="top-0 left-4 text-xl text-gray z-50 lg:hidden"
+              >
+                {!isMobileOpen && <FiMenu />}
+              </button>
+            </div>
             <MenuHeader />
             <div className="flex flex-col md:flex-row md:space-x-8 mt-8">
               {/* Left: MenuTree */}
