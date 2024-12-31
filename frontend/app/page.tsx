@@ -1,15 +1,32 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Sidebar from "./components/Sidebar";
 import MenuTree from "./components/MenuTree";
 import MenuForm from "./components/MenuForm";
-import { menuData } from "./components/menuData";
 import MenuHeader from "./components/MenuHeader";
+import { fetchMenus } from "./api/menu";
 import { TreeProvider } from "./context/TreeContext";
 
 const Page: React.FC = () => {
   const [activeNode, setActiveNode] = useState<any>(null);
+  const [menuData, setMenuData] = useState<any[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const loadMenus = async () => {
+      try {
+        const data = await fetchMenus();
+        setMenuData(data);
+      } catch (err: any) {
+        setError(err.message || "Failed to fetch menus");
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadMenus();
+  }, []);
 
   return (
     <TreeProvider>
@@ -23,12 +40,18 @@ const Page: React.FC = () => {
             <MenuHeader />
             <div className="flex space-x-8 mt-8">
               <div className="w-1/2">
-                <MenuTree
-                  data={menuData}
-                  onSelect={setActiveNode}
-                  activeNode={activeNode}
-                  setActiveNode={setActiveNode}
-                />
+                {loading ? (
+                  <div>Loading menus...</div>
+                ) : error ? (
+                  <div className="text-red-500">Error: {error}</div>
+                ) : (
+                  <MenuTree
+                    data={menuData}
+                    onSelect={setActiveNode}
+                    activeNode={activeNode}
+                    setActiveNode={setActiveNode}
+                  />
+                )}
               </div>
               {/* Right: Form */}
               <div className="w-1/2">

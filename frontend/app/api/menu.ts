@@ -1,3 +1,4 @@
+// api/menu.ts
 import axios from "axios";
 
 const API_BASE = "http://localhost:5002"; // Replace with your backend base URL
